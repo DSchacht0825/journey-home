@@ -54,7 +54,7 @@ export function Navbar({ user }: NavbarProps) {
           <div className="flex items-center">
             <Link href={user ? "/dashboard" : "/"} className="flex items-center gap-3">
               <Image
-                src="/journeyhome.png"
+                src="/Journey-Home_White_Simple.png"
                 alt="Journey Home"
                 width={40}
                 height={40}

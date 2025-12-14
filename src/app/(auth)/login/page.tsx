@@ -40,7 +40,7 @@ export default function LoginPage() {
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
             <Image
-              src="/journeyhome.png"
+              src="/Journey-Home_White_Simple.png"
               alt="Journey Home"
               width={80}
               height={80}

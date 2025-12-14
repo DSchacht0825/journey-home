@@ -13,7 +13,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8 flex justify-center">
             <Image
-              src="/journeyhome.png"
+              src="/Journey-Home_White_Simple.png"
               alt="Journey Home"
               width={120}
               height={120}
@@ -98,7 +98,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
             <Image
-              src="/journeyhome.png"
+              src="/Journey-Home_White_Simple.png"
               alt="Journey Home"
               width={32}
               height={32}
