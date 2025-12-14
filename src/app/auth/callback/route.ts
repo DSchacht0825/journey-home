@@ -9,6 +9,10 @@ export async function GET(request: Request) {
 
   if (code) {
     const supabase = await createClient();
+
+    // Sign out any existing session first to ensure we process the invite correctly
+    await supabase.auth.signOut();
+
     const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!error) {
