@@ -12,10 +12,20 @@ export async function GET(request: Request) {
     const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!error) {
-      // If this is an invite, redirect to set password page
-      if (type === "invite" || type === "recovery") {
-        return NextResponse.redirect(`${origin}/auth/set-password`);
+      // Check if user needs to set password (new invite)
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (user) {
+        // If this is an invite or recovery, or if user was just created (within last 5 min)
+        const createdAt = new Date(user.created_at).getTime();
+        const now = Date.now();
+        const isNewUser = (now - createdAt) < 5 * 60 * 1000; // 5 minutes
+
+        if (type === "invite" || type === "recovery" || type === "signup" || isNewUser) {
+          return NextResponse.redirect(`${origin}/auth/set-password`);
+        }
       }
+
       return NextResponse.redirect(`${origin}${next}`);
     }
   }
