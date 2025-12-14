@@ -19,7 +19,7 @@ export async function POST(request: Request) {
       .eq("id", user.id)
       .single();
 
-    if (profile?.role !== "admin") {
+    if ((profile as { role: string } | null)?.role !== "admin") {
       return NextResponse.json({ error: "Only admins can invite users" }, { status: 403 });
     }
 
