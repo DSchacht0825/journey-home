@@ -44,6 +44,24 @@ export default function UsersManagementPage() {
     setShowUserMenu(null);
   };
 
+  const deleteUser = async (userId: string) => {
+    if (!confirm("Are you sure you want to remove this user? This cannot be undone.")) {
+      return;
+    }
+
+    const response = await fetch(`/api/users/${userId}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      setUsers(users.filter(u => u.id !== userId));
+    } else {
+      const data = await response.json();
+      alert(data.error || "Failed to delete user");
+    }
+    setShowUserMenu(null);
+  };
+
   const filteredUsers = users.filter(user =>
     user.full_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
     user.email.toLowerCase().includes(searchQuery.toLowerCase())
@@ -173,6 +191,7 @@ export default function UsersManagementPage() {
                             Send Message
                           </button>
                           <button
+                            onClick={() => deleteUser(user.id)}
                             className="w-full px-4 py-2 text-left text-sm hover:bg-muted flex items-center gap-2 text-destructive"
                           >
                             <Trash2 className="w-4 h-4" />

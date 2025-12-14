@@ -42,7 +42,7 @@ export function Navbar({ user }: NavbarProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const allNavItems = user?.role === "admin" || user?.role === "moderator"
+  const allNavItems = user?.role === "admin"
     ? [...navItems, ...adminItems]
     : navItems;
 
