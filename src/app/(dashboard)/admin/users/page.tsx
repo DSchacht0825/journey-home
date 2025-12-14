@@ -209,17 +209,23 @@ function InviteModal({ onClose, onSuccess }: { onClose: () => void; onSuccess: (
     setIsLoading(true);
     setError("");
 
-    // In a real app, you'd call a server action or API to invite the user
-    // This would send them an email with a signup link
-    // For now, we'll just show a success message
-
     try {
-      // Placeholder for invite logic
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch("/api/invite", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, fullName, role }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send invitation");
+      }
+
       onSuccess();
       onClose();
-    } catch {
-      setError("Failed to send invitation");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to send invitation");
     } finally {
       setIsLoading(false);
     }

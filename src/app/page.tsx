@@ -32,18 +32,15 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/signup"
-              className="px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold text-lg hover:bg-primary/90 transition-colors shadow-md"
-            >
-              Begin Your Journey
-            </Link>
-            <Link
               href="/login"
-              className="px-8 py-4 border-2 border-primary text-primary rounded-lg font-semibold text-lg hover:bg-primary hover:text-primary-foreground transition-colors"
+              className="px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold text-lg hover:bg-primary/90 transition-colors shadow-md"
             >
               Sign In
             </Link>
           </div>
+          <p className="mt-6 text-sm text-muted-foreground">
+            Journey Home is an invite-only community. Contact an administrator for access.
+          </p>
         </div>
       </section>
 

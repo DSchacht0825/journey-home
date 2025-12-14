@@ -247,18 +247,27 @@ function CreateCohortModal({
       return;
     }
 
-    const { error } = await supabase.from("cohorts").insert({
+    const { data: newCohort, error } = await supabase.from("cohorts").insert({
       name,
       description: description || null,
       start_date: startDate || null,
       end_date: endDate || null,
       created_by: user.id,
-    } as never);
+    } as never).select().single();
 
     if (error) {
       setError(error.message);
       setIsLoading(false);
       return;
+    }
+
+    // Auto-add creator as moderator
+    if (newCohort) {
+      await supabase.from("cohort_members").insert({
+        cohort_id: (newCohort as { id: string }).id,
+        user_id: user.id,
+        role: "moderator",
+      } as never);
     }
 
     onSuccess();

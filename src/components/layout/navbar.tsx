@@ -125,15 +125,9 @@ export function Navbar({ user }: NavbarProps) {
               <div className="flex items-center gap-2">
                 <Link
                   href="/login"
-                  className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  href="/signup"
                   className="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
                 >
-                  Get Started
+                  Sign In
                 </Link>
               </div>
             )}
